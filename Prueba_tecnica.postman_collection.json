@@ -1,0 +1,188 @@
+{
+	"info": {
+		"_postman_id": "0d667ba9-6875-4804-b068-a3498548b96e",
+		"name": "Prueba_tecnica",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15551704"
+	},
+	"item": [
+		{
+			"name": "DeleteEmpleado",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/empleado/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"empleado",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewEmpleado",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\":\"alfonso1\",\r\n    \"apellidos\":\"contreras vergara\",\r\n    \"tipoIdentificacion\":\"cc\",\r\n    \"identificacion\":\"224422\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/empleado",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"empleado"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEmpleadoById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/empleado/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"empleado",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateEmpleado",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombres\":\"alfonso1\",\r\n    \"apellidos\":\"contreras vergara\",\r\n    \"tipoIdentificacion\":\"cc\",\r\n    \"identificacion\":\"224422\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5000/api/empleado/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"empleado",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewEmpleadoTelefono",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/empleado/telefono",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"empleado",
+						"telefono"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEmpleadosAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/empleado",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"empleado"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetTelefonoEmpleado",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/empleado/telefono/3",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"empleado",
+						"telefono",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteTelefonoEmpleado",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:5000/api/empleado/telefono/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"empleado",
+						"telefono",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

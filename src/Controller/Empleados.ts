@@ -12,6 +12,14 @@ class EmpleadosController{
 
     public async NewEmpleado(req:Request,res:Response){
         const {apellidos,nombres,identificacion,tipoIdentificacion}:EmpleadoI = req.body;
+        const empt = await EmpM.findOne({
+            where:{
+                identificacion
+            }
+        });
+        if(empt){
+            return MessageController.Error(req,res,"El Empleado Ya Existe en el Sistema");
+        }
         const fecha_ingreso = date.format(new Date(),'YYYY-MM-DD HH:mm');
         await EmpM.create({apellidos,nombres,identificacion,tipoIdentificacion,fecha_ingreso});
         return MessageController.Success(req,res,"Empleado Creado Correctamente",201);
@@ -46,13 +54,21 @@ class EmpleadosController{
 
     public async UpdateEmpleado(req:Request,res:Response){
         const { id } = req.params;
-        const { id:id_empleado, fecha_ingreso , ...obj } = req.body;
-        const empleado = await EmpM.findByPk(id);
+        const { apellidos,identificacion,nombres,tipoIdentificacion }:EmpleadoI = req.body;
+        const empleado:any = await EmpM.findOne({
+            where:{
+                id:id
+            }
+        });
         if(!empleado){
             return MessageController.Error(req,res,"No Se Encontro El Empleado",404);
         }
-        await empleado.update(obj);
-        MessageController.Success(req,res,empleado,200)
+        empleado.apellidos =apellidos
+        empleado.identificacion = identificacion 
+        empleado.nombres = nombres
+        empleado.tipoIdentificacion=tipoIdentificacion
+        await empleado.save();
+        MessageController.Success(req,res,"Actualizado Correctamente",200)
     }
 
 
@@ -74,8 +90,8 @@ class EmpleadosController{
 
     public async NewTelefonoEmpleado(req:Request,res:Response){
         const {Tipo, indicativo,numero,personaId }:TelefonoEmpleadoI = req.body;
-        const telefono = await EmpTelefonoM.create({Tipo, indicativo,numero,personaId },{isNewRecord:true});
-        return MessageController.Success(req,res,telefono,201);
+        const telefono = await EmpTelefonoM.create({Tipo, indicativo,numero,personaId });
+        return MessageController.Success(req,res,"Creado Correctamente",201);
     }
 
     public async DeleteTelefonoEmpleado(req:Request,res:Response){
@@ -94,11 +110,22 @@ class EmpleadosController{
 
 
     public async GetEmailEmpleado(req:Request,res:Response){
-
+        const { id } = req.params;
+        const email = await EmpEmailM.findAll({
+            where:{
+                personaId:id
+            }
+        });
+        if(!email){
+            return MessageController.Error(req,res,"No Se Encontro El Empleado",404);
+        }
+        MessageController.Success(req,res,email,200);
     }
 
     public async NewEmailEmpleado(req:Request,res:Response){
-        
+        const { email,personaId }:EmailEmpleadoI = req.body;
+        const EmailCreate = await EmpEmailM.create({ email,personaId });
+        MessageController.Success(req,res,"Creado Correctamente",201);
     }
 
     public async DeleteEmailEmpleado(req:Request,res:Response){
